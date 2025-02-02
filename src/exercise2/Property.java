@@ -19,7 +19,7 @@ public abstract class Property {
 
     public void setAddress(String address) {
         String arr[] = address.split(" ");
-        if(address==null || address.equals("")|| arr.length<2){
+        if(address==null || arr.length<2){
             address= "NA, na";
         }
         this.address = address;
