@@ -1,5 +1,7 @@
 package interfaceGarage;
 
+import java.util.Scanner;
+
 public class MainGarage {
 
     private static GarageDB garageDB;
@@ -7,12 +9,8 @@ public class MainGarage {
     public static void start() {
         garageDB = new GarageDB();
         garageDB.initMap();
-        build(1,"Honda CBR500R");
-        build(1,"Kawasaki Ninja");
-        build(2,"Honda Civic");
-        build(2,"Ford Focus");
-        build(3,"Ford Ranger");
-        build(3,"Volvo FMX" );
+        scanVehicles();
+
        /* garageDB.addVehicle(new MotorCycle("Yamaha"));
         garageDB.addVehicle(new Car("Mercedes"));
         garageDB.addVehicle(new Car("Ferrari"));
@@ -46,6 +44,29 @@ public class MainGarage {
                 break;
             default:
                 System.out.println("Invalid input");
+        }
+    }
+    public static void scanVehicles() {
+        Scanner scanner = new Scanner(System.in);
+        Vehicle v;
+        String name;
+        int type;
+        while(true) {
+            System.out.println("Enter a number (0->stop the scan, 1->Motorcycle, 2->Car, 3->Truck)");
+            try{
+                type = scanner.nextInt();
+            }catch (Exception e) {
+                e.getMessage();
+                type=-1;
+            }
+            if(type==0){
+                break;
+            } if(type!=-1){
+                scanner.nextLine();
+                System.out.println("Enter vehicle name");
+            }
+            name = scanner.nextLine();
+            build(type,name);
         }
     }
 }
